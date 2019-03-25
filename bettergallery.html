@@ -1,0 +1,280 @@
+<DOCTYPE html>
+
+<html>
+<head>
+
+<style>
+body {
+  background-color: darkblue;
+}
+
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: 30%;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f1f1f1;
+  padding: 20px;
+  font-family: Arial;
+}
+
+.main {
+  max-width: 1000px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 50px;
+  word-break: break-all;
+}
+
+.row {
+  margin: 8px -16px;
+}
+
+.row,
+.row > .column {
+  padding: 8px;
+}
+
+.column {
+  float: left;
+  width: 25%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.content {
+  background-color: white;
+  padding: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  .column {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+img:hover {
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+* {box-sizing: border-box;}
+
+.img-comp-container {
+  position: relative;
+  height: 200px; /*should be the same height as the images*/
+}
+
+.img-comp-img {
+  position: absolute;
+  width: auto;
+  height: auto;
+  overflow:hidden;
+}
+
+.img-comp-img img {
+  display:block;
+  vertical-align:middle;
+}
+
+.img-comp-slider {
+  position: absolute;
+  z-index:9;
+  cursor: ew-resize;
+  /*set the appearance of the slider:*/
+  width: 40px;
+  height: 40px;
+  background-color: #2196F3;
+  opacity: 0.7;
+  border-radius: 50%;
+}
+
+</style>
+
+<script>
+function initComparisons() {
+  var x, i;
+  x = document.getElementsByClassName("img-comp-overlay");
+  for (i = 0; i < x.length; i++) {
+
+    compareImages(x[i]);
+  }
+  function compareImages(img) {
+    var slider, img, clicked = 0, w, h;
+    w = img.offsetWidth;
+    h = img.offsetHeight;
+    img.style.width = (w / 2) + "px";
+    slider = document.createElement("DIV");
+    slider.setAttribute("class", "img-comp-slider");
+    img.parentElement.insertBefore(slider, img);
+    slider.style.top = (h / 2) - (slider.offsetHeight / 2) + "px";
+    slider.style.left = (w / 2) - (slider.offsetWidth / 2) + "px";
+    slider.addEventListener("mousedown", slideReady);
+    window.addEventListener("mouseup", slideFinish);
+    slider.addEventListener("touchstart", slideReady);
+    window.addEventListener("touchstop", slideFinish);
+    function slideReady(e) {
+      e.preventDefault();
+      clicked = 1;
+      window.addEventListener("mousemove", slideMove);
+      window.addEventListener("touchmove", slideMove);
+    }
+    function slideFinish() {
+      clicked = 0;
+    }
+    function slideMove(e) {
+      var pos;
+      if (clicked == 0) return false;
+      pos = getCursorPos(e)
+      if (pos < 0) pos = 0;
+      if (pos > w) pos = w;
+      slide(pos);
+    }
+    function getCursorPos(e) {
+      var a, x = 0;
+      e = e || window.event;
+      a = img.getBoundingClientRect();
+      x = e.pageX - a.left;
+      x = x - window.pageXOffset;
+      return x;
+    }
+    function slide(x) {
+      img.style.width = x + "px";
+      slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) + "px";
+    }
+  }
+}
+</script>
+
+<title>better gallery</title>
+
+<link rel="stylesheet" href="style.css"></link>
+
+</head>
+<body>
+<div class="top"> 
+
+<span>BALUM SUPPORT PAGE</span> 
+
+</div> 
+<div class="topnav"> 
+
+  <a href="mwibty.html">Home</a> 
+
+  <a href="balum.html" >balum</a> 
+
+  <a class="galy" href="bettergallery.html" >gallery</a> 
+
+  <a href="mshun.html">Ms hunter fan page</a> 
+
+</div>
+
+<h1>THE GALLERY</h1>
+<hr>
+
+<h2>EBIC GALLERY</h2>
+<p>pictures from the main webpage.</p>
+
+
+<div class="row">
+  <div class="column">
+    <div class="content">
+		<div class="img-comp-container">
+			<div class="img-comp-img">
+				<img src="carrot.png" alt="carrot boy" height="350" width="270">				
+			</div>
+			<div class="img-comp-img img-comp-overlay">
+				<img src="dam.png" alt="Bear2" height="350" width="270">
+			</div>
+		</div>
+      <img src="white.png" style="width:100%" height="150">
+	  <h3>Carrot Boy</h3>
+      <p>formally known as leapday turnip even though he is clearly a carrot for some reason smh. He is the worst enemy in the leapday game and we must purge them. :)</p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="content">
+    <img src="rob.jpg" alt="robery bob" style="width:100%" height="350">
+      <h3>robert</h3>
+      <p>Not much to say, his website is trash, he is trash and he owes ranjan millions of £s and if he doesnt pay up me and the boys are going to break his knee caps.</p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="content">
+    <img src="mc.jpeg" alt="mcChord" style="width:100%" height="350">
+      <h3>McCord</h3>
+      <p>balum has not done his homework and will be hung for being a commie. also ranjan is to be awarded for reporting communist behavour to the authorities and goverment.</p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="content">
+    <img src="bal.jpeg" alt="Mountains" style="width:100%" height="350">
+      <h3>Ranjan</h3>
+      <p>He play gran torismo. Also watches the grand tour on amazon becuase he's rich but gave all his money to robit and is now tryng to nuke pakistan for beating them in cricket.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="content">
+    <img src="balosh.jpg" alt="Bear" style="width:100%">
+  <h3>Some Other Work</h3>
+  <p>we are filming for columbus now but christopher(writer) has decided not to continue filming until exams becuase he needs to revise. Also he is a bado</p>
+  <p>but in the photo is a behind the scenes of christopher columbus 2 electric boogaloo with star layer balum bot and co-director and producer yoshua bambell.</p>
+</div>
+
+</div>
+
+<script>
+initComparisons();
+</script>
+
+</body>
+</html>
