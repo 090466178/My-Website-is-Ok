@@ -167,6 +167,16 @@ font-size: 30px;
   color: white; 
 
 }
+
+
+.topnav a.MS{ 
+
+  background-color: orange;
+  
+  color: white;
+
+}
+
 div.gallery {
   margin: 5px;
   border: 1px solid #ccc;
